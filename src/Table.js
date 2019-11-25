@@ -17,7 +17,7 @@ class Table extends React.Component {
     this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.empCount !== this.state.empCount) {
       const idx = store.getState().curPage
       axios.get(`http://localhost:3000/api/employees/${idx}`)
