@@ -38,4 +38,20 @@ app.get('/api/employees/:page?', (req, res, next) => {
   });
 });
 
+app.delete('/api/employees/:id', (req, res, next)  => {
+  try {
+    const deleteEmp = Employee.destroy({
+      where: {id: req.params.id}
+    })
+    if (deleteEmp) {
+      res.status(200).send()
+    }
+    else {
+      res.status(400).send('error')
+    }
+  }
+  catch (err) {
+    next(err)
+  }
+})
 module.exports = { app };
